@@ -1,9 +1,9 @@
-import { useState } from "react"
+import React, { useState } from "react"
 
 type FormConfigType = {
   stepName: string
   progressValue: number
-  // fields: any[]
+  section: React.FC
 
 }
 export type MultiStepFormProps = {
@@ -41,7 +41,7 @@ export default function MultiStepForm({ formConfig }: Readonly<MultiStepFormProp
             <>
               <div key={index} style={{ display: 'grid', background: step === index ? '#e6e6e6' : '#FFFFFF', padding: '2rem', gridTemplateRows: '11fr 1fr', gridTemplateColumns: '1fr' }}>
                 <div>
-                  <h2>{stepData.stepName}</h2>
+                  <stepData.section />
                   <div style={{ display: step === index ? 'flex' : 'none', justifyContent: 'end', alignItems: 'center', gap: '1rem' }}>
                     <button onClick={() => handleFormBtnClick("previous")}>Previous</button>
                     <button onClick={() => handleFormBtnClick("next")}>Next</button>

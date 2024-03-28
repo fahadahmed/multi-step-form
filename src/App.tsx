@@ -1,21 +1,22 @@
 import { MultiStepForm } from "./components"
+import { EducationalQualificationForm, EmploymentHistoryForm, PersonalDetailsForm } from "./components/forms"
 
 // create the formConfig data
 const formConfig = [
   {
     stepName: 'Personal Details',
     progressValue: 0,
-    fields: []
+    section: PersonalDetailsForm
   },
   {
     stepName: 'Education Qualifications',
     progressValue: 50,
-    fields: []
+    section: EducationalQualificationForm
   },
   {
     stepName: 'Employment Details',
     progressValue: 80,
-    fields: []
+    section: EmploymentHistoryForm
   }
 ]
 function App() {
