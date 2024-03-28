@@ -2,6 +2,7 @@ import { useState } from "react"
 
 type FormConfigType = {
   stepName: string
+  progressValue: number
   // fields: any[]
 
 }
@@ -33,12 +34,12 @@ export default function MultiStepForm({ formConfig }: Readonly<MultiStepFormProp
     }
   }
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', width: '100%', height: '100%' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', width: '100%', height: '100%', gap: '2rem' }}>
       <div>
         {formConfig.map((stepData, index) => {
           return (
             <>
-              <div key={index} style={{ display: 'grid', background: '#e6e6e6', padding: '2rem', gridTemplateRows: '11fr 1fr', gridTemplateColumns: '1fr' }}>
+              <div key={index} style={{ display: 'grid', background: step === index ? '#e6e6e6' : '#FFFFFF', padding: '2rem', gridTemplateRows: '11fr 1fr', gridTemplateColumns: '1fr' }}>
                 <div>
                   <h2>{stepData.stepName}</h2>
                   <div style={{ display: step === index ? 'flex' : 'none', justifyContent: 'end', alignItems: 'center', gap: '1rem' }}>
@@ -52,8 +53,17 @@ export default function MultiStepForm({ formConfig }: Readonly<MultiStepFormProp
         })}
       </div>
       <div style={{ background: "#efefef", padding: '2rem' }}>
-        <h3>Form Data</h3>
-        <p>Current Step: {formConfig[step].stepName}</p>
+        <h3>On this page</h3>
+        <ul>
+          {formConfig.map((stepData, index) => (
+            <li key={index} style={{ marginBottom: '1rem' }} onClick={() => setStep(index)}>
+              {/* <button onClick={() => setStep(index)}></button> */}
+              {step === index ? <strong>{stepData.stepName}</strong> : stepData.stepName}
+            </li>
+          ))}
+        </ul>
+        <h3>Progress</h3>
+        <progress value={formConfig[step].progressValue} max="100"></progress>
       </div>
     </div>
   )

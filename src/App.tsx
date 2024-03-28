@@ -4,14 +4,17 @@ import { MultiStepForm } from "./components"
 const formConfig = [
   {
     stepName: 'Personal Details',
+    progressValue: 0,
     fields: []
   },
   {
     stepName: 'Education Qualifications',
+    progressValue: 50,
     fields: []
   },
   {
     stepName: 'Employment Details',
+    progressValue: 80,
     fields: []
   }
 ]
