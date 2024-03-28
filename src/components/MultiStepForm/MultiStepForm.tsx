@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useFormStore } from "../stores/useFormStore"
 
 type FormConfigType = {
   stepName: string
@@ -21,15 +22,18 @@ export type MultiStepFormProps = {
 //         9. Add a button to submit the form
 export default function MultiStepForm({ formConfig }: Readonly<MultiStepFormProps>) {
   const [step, setStep] = useState(0)
+  const { setCurrentStep } = useFormStore()
 
   const handleFormBtnClick = (action: string) => {
     if (action === "next") {
       if (step < formConfig.length - 1) {
         setStep(step + 1)
+        setCurrentStep(step + 1)
       }
     } else if (action === "previous") {
       if (step > 0) {
         setStep(step - 1)
+        setCurrentStep(step - 1)
       }
     }
   }
