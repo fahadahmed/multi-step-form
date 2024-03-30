@@ -7,7 +7,7 @@ import '../../../App.css';
 export default function EmploymentHistoryForm() {
   const { currentStep, stepCompleted } = useFormStore()
   const thisStep = 2;
-  const { handleSubmit, formState: { errors }, register } = useForm({
+  const { handleSubmit, formState: { errors }, register, reset } = useForm({
     resolver: zodResolver(employmentHistorySchema)
   });
 
@@ -48,7 +48,10 @@ export default function EmploymentHistoryForm() {
             </div>
           </div>
           <div style={{ display: currentStep !== thisStep ? 'none' : 'flex', justifyContent: 'end', alignItems: 'center', gap: '1rem' }}>
-            <button type="reset">Discard</button>
+            <button type="reset" onClick={() => reset({
+              employmentType: '',
+              hoursEmployed: ''
+            })}>Discard</button>
             <button type="submit">Continue</button>
           </div>
         </form>
