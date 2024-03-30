@@ -17,7 +17,10 @@ export default function PersonalDetailsForm() {
     const gender = _data.gender;
     const staffType = _data.staffType;
     const vitNumber = _data.vitNumber;
+
+    // This is where the mutation to create a new staff member would go
     console.log(firstName, lastName, gender, staffType, vitNumber);
+    // If successful, move to the next step - condition needs to be applied here.
     setCurrentStep(thisStep + 1)
   }
 

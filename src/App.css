@@ -51,3 +51,7 @@ button[type="reset"] {
     color: #201547;
   }
 } 
+
+small {
+  color: red;
+}
