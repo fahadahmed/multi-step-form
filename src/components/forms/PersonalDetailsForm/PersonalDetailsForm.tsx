@@ -5,9 +5,9 @@ import personalDetailsSchema from "./personalDetailsSchema"
 import '../../../App.css';
 
 export default function PersonalDetailsForm() {
-  const { currentStep, setCurrentStep } = useFormStore()
+  const { currentStep, setCurrentStep, setStepCompleted } = useFormStore()
   const thisStep = 0;
-  const { handleSubmit, formState: { errors }, register } = useForm({
+  const { handleSubmit, formState: { errors }, register, reset } = useForm({
     resolver: zodResolver(personalDetailsSchema)
   });
 
@@ -21,7 +21,8 @@ export default function PersonalDetailsForm() {
     // This is where the mutation to create a new staff member would go
     console.log(firstName, lastName, gender, staffType, vitNumber);
     // If successful, move to the next step - condition needs to be applied here.
-    setCurrentStep(thisStep + 1)
+    setCurrentStep(thisStep + 1);
+    setStepCompleted('personalDetails');
   }
 
   if (errors) {
@@ -77,7 +78,13 @@ export default function PersonalDetailsForm() {
           </div>
         </div>
         <div style={{ display: currentStep !== thisStep ? 'none' : 'flex', justifyContent: 'end', alignItems: 'center', gap: '1rem' }}>
-          <button type="reset">Discard</button>
+          <button type="reset" onClick={() => reset({
+            firstName: '',
+            lastName: '',
+            staffType: '',
+            gender: '',
+            vitNumber: ''
+          })}>Discard</button>
           <button type="submit">Continue</button>
         </div>
       </form>
